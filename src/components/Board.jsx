@@ -25,11 +25,21 @@ function Board() {
       {/* TODO (paso 4): <div className="status"> con el texto de estado */}
 
       {/* TODO (paso 1): tres filas <div className="board-row">, cada una con 3 Square */}
-      <p>Aquí irá el tablero</p>
+      <p></p>
       <div className="board-row">
-        <square value={}></square>
-        <square value={}></square>
-        <square value={}></square>
+        <square value={squares[0]}></square>
+        <square value={squares[1]}></square>
+        <square value={squares[2]}></square>
+      </div>
+      <div className="board-row">
+        <square value={squares[3]}></square>
+        <square value={squares[4]}></square>
+        <square value={squares[5]}></square>
+      </div>
+      <div className="board-row">
+        <square value={squares[6]}></square>
+        <square value={squares[7]}></square>
+        <square value={squares[8]}></square>
       </div>
     </>
   )
