@@ -8,10 +8,6 @@ function Board({ xIsNext, squares, onPlay, selected, onSelect }) {
   const fichasJugador = squares.filter(casilla => casilla === jugador).length;
   const faseMover = fichasJugador === MAX_FICHAS;
 
-  // TODO (paso 4): texto de estado según la fase
-  //   "Turno de X: coloca una ficha"
-  //   "Turno de X: elige una de tus fichas para moverla"
-  //   "Turno de X: elige una casilla vacía"
 function handleClick(i) {
     if (calculateWinner(squares)) {
       return
@@ -53,19 +49,19 @@ function handleClick(i) {
     <>
       <div className="status">{status}</div>
       <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        <Square value={squares[0]} seleccionada={selected === 0} onSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} seleccionada={selected === 1} onSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} seleccionada={selected === 2} onSquareClick={() => handleClick(2)} />
       </div>
       <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        <Square value={squares[3]} seleccionada={selected === 3} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} seleccionada={selected === 4} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} seleccionada={selected === 5} onSquareClick={() => handleClick(5)} />
       </div>
       <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+        <Square value={squares[6]} seleccionada={selected === 6} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} seleccionada={selected === 7} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} seleccionada={selected === 8} onSquareClick={() => handleClick(8)} />
       </div>
     </>
   )
