@@ -43,7 +43,7 @@ function Game() {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-         <div className="game-info">{/* lista de movimientos de la parte 1 */}</div>
+         <div className="game-info">{{moves}}</div>
       </div>
     </div>
   )

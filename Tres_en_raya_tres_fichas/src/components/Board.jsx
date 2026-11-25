@@ -1,16 +1,17 @@
 import { calculateWinner } from '../utils/calculateWinner'
 import Square from './Square'
-// TODO (paso 1): constante MAX_FICHAS = 3
 
 // Props nuevas que recibirá Board (paso 2):
 //   selected -> posición de la ficha elegida para mover, o null
 //   onSelect -> función para cambiar la ficha elegida
-function Board() {
-  // TODO (paso 1): valores derivados
-  //   - jugador: 'X' u 'O' según el turno
-  //   - fichasJugador: cuántas fichas tiene ese jugador en el tablero
-  //   - faseMover: true si ya tiene MAX_FICHAS
+const MAX_FICHAS = 3; 
 
+function Board({ xIsNext, squares, onPlay }) {
+  const jugador =  xIsNext ? 'X' : 'O';
+  const fichasJugador = squares.filter(casilla => casilla === jugador).length;
+  const faseMover = fichasJugador === MAX_FICHAS;
+
+  
   // TODO (paso 2): handleClick(i) con dos fases
   //   Fase colocar -> igual que en la parte 1
   //   Fase mover   -> 1) pulsar una ficha propia la selecciona (o la deselecciona)
