@@ -1,40 +1,44 @@
 import { calculateWinner } from '../utils/calculateWinner'
 import Square from './Square'
 
-// Props nuevas que recibirá Board (paso 2):
-//   selected -> posición de la ficha elegida para mover, o null
-//   onSelect -> función para cambiar la ficha elegida
 const MAX_FICHAS = 3; 
 
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, squares, onPlay, selected, onSelect }) {
   const jugador =  xIsNext ? 'X' : 'O';
   const fichasJugador = squares.filter(casilla => casilla === jugador).length;
   const faseMover = fichasJugador === MAX_FICHAS;
-
-  
-  // TODO (paso 2): handleClick(i) con dos fases
-  //   Fase colocar -> igual que en la parte 1
-  //   Fase mover   -> 1) pulsar una ficha propia la selecciona (o la deselecciona)
-  //                   2) con una ficha elegida, pulsar una casilla vacía la mueve:
-  //                      copia del tablero, null en el origen, jugador en el destino
 
   // TODO (paso 4): texto de estado según la fase
   //   "Turno de X: coloca una ficha"
   //   "Turno de X: elige una de tus fichas para moverla"
   //   "Turno de X: elige una casilla vacía"
 function handleClick(i) {
-    if (calculateWinner(squares) || squares[i]) {
+    if (calculateWinner(squares)) {
       return
     }
-
-    const nextSquares = squares.slice();
-      if (xIsNext) {
-        nextSquares[i] = 'X';
-      } else {
-        nextSquares[i] = 'O';
+    
+    if(!faseMover) {
+      if (squares[i]) {
+        return;
       }
+      const nextSquares = squares.slice();
+      nextSquares[i] = jugador;
       onPlay(nextSquares);
-  }
+    }
+    
+    if (squares[i] === jugador) {
+      onSelect(selected === i ? null : i);
+      return;
+    }
+
+    if(squares[i] === null && selected !== null) {
+      const nextSquares = squares.slice();
+      nextSquares[selected] = null; 
+      nextSquares[i] = jugador; 
+      onPlay(nextSquares);
+    }
+
+}
 
   const winner = calculateWinner(squares);
   let status;
