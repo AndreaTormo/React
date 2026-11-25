@@ -41,7 +41,7 @@ function Game() {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} selected={selected} onSelect={setSelected}/>
       </div>
       <div className="game-info">
-         <div className="game-info">{moves}</div>
+         <ol>{moves}</ol>
       </div>
     </div>
   )

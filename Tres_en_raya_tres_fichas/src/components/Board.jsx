@@ -20,6 +20,7 @@ function handleClick(i) {
       const nextSquares = squares.slice();
       nextSquares[i] = jugador;
       onPlay(nextSquares);
+      return;
     }
     
     if (squares[i] === jugador) {
@@ -41,8 +42,12 @@ function handleClick(i) {
 
   if (winner) {
     status = 'Guanyador: ' + winner;
-  } else {
-    status = 'Següent jugador: ' + (xIsNext ? 'X' : 'O');
+  } else if (!faseMover) {
+    status = `Torn de ${jugador}: col·loca una fitxa `;
+  } else if (selected === null) {
+    status = `Torn de ${jugador}: agafa una de les teues fitxes per menejar-la`;
+  } else{
+    status = `Torn de ${jugador}: elegix una casella buida`;
   }
 
   return (

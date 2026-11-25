@@ -19,6 +19,7 @@ h1 {
   flex-wrap: wrap;
   gap: 32px;
   justify-content: center;
+  align-items: center;
 }
 
 .status {
