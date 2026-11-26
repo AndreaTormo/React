@@ -4,6 +4,14 @@ import Tablero from './Tablero'
 
 const TABLERO_VACIO = Array.from({ length: COLUMNAS }, () => [])
 
+function numeroColumnaJugada(tablero, tableroAnterior) {
+  return (
+    tablero.findIndex(
+      (columna, col) => columna.length !== tableroAnterior[col].length,
+    ) + 1
+  )
+}
+
 function Partida() {
   const [historial, setHistorial] = useState([TABLERO_VACIO])
   const [movimientoActual, setMovimientoActual] = useState(0)
@@ -12,19 +20,38 @@ function Partida() {
   const tableroActual = historial[movimientoActual]
 
   function jugar(nuevoTablero) {
-    const nuevoHistorial = [...historial, nuevoTablero]
+    const nuevoHistorial = [
+      ...historial.slice(0, movimientoActual + 1),
+      nuevoTablero,
+    ]
     setHistorial(nuevoHistorial)
     setMovimientoActual(nuevoHistorial.length - 1)
   }
 
-  // TODO (paso 5): lista de movimientos "Ir al movimiento #N (columna C)"
+  const movimientos = historial.map((tablero, move) => {
+    let descripcion
+    if (move === 0) {
+      descripcion = 'Ir al inicio de la partida'
+    } else {
+      const columna = numeroColumnaJugada(tablero, historial[move - 1])
+      descripcion = `Ir al movimiento #${move} (columna ${columna})`
+    }
+
+    return (
+      <li key={move}>
+        <button onClick={() => setMovimientoActual(move)}>{descripcion}</button>
+      </li>
+    )
+  })
 
   return (
     <div className="partida">
       <div>
         <Tablero turno={turno} tablero={tableroActual} onJugar={jugar} />
       </div>
-      <div className="historial">{/* TODO (paso 5): <ol> con los movimientos */}</div>
+      <div className="historial">
+        <ol>{movimientos}</ol>
+      </div>
     </div>
   )
 }
