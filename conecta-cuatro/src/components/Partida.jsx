@@ -10,15 +10,17 @@ function Partida() {
 
   // TODO (paso 3): valores derivados turno ('R' en movimientos pares) y tableroActual
 
-  // TODO (paso 2): función jugar(nuevoTablero), igual que handlePlay
+  function jugar(nuevoTablero) {
+    setHistorial([...historial, nuevoTablero])
+  }
 
   // TODO (paso 5): lista de movimientos "Ir al movimiento #N (columna C)"
 
   return (
     <div className="partida">
       <div>
-        <Tablero tablero={historial[0]} />
-        {/* TODO: pasa las props turno, tablero y onJugar */}
+        <Tablero tablero={historial[historial.length - 1]} onJugar={jugar} />
+        {/* TODO (paso 3): pasa la prop turno */}
       </div>
       <div className="historial">{/* TODO (paso 5): <ol> con los movimientos */}</div>
     </div>
