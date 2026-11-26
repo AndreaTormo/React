@@ -101,3 +101,41 @@ h1 {
 .historial button {
   cursor: pointer;
 }
+
+/* Marcador de partidas ganadas por color */
+.marcador {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+
+.marcador-jugador {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.marcador strong {
+  font-size: 1.2rem;
+}
+
+.marcador button {
+  margin-left: auto;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1f4fb5;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.marcador button:hover {
+  background: #17409a;
+}
