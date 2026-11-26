@@ -1,10 +1,6 @@
 export const COLUMNAS = 7
 export const FILAS = 6
 
-// El tablero es un array de 7 columnas. Cada columna es un array con sus
-// fichas de ABAJO hacia ARRIBA: tablero[col][0] es la ficha del fondo.
-// Esta función ya está hecha: devuelve 'R', 'A' o null para la posición
-// (col, fila). Fuera del tablero también devuelve null.
 function ficha(tablero, col, fila) {
   if (col < 0 || col >= COLUMNAS || fila < 0 || fila >= FILAS) {
     return null
@@ -12,8 +8,6 @@ function ficha(tablero, col, fila) {
   return tablero[col][fila] ?? null
 }
 
-// Direcciones [avance en columna, avance en fila]:
-// horizontal, vertical, diagonal hacia arriba y diagonal hacia abajo
 const DIRECCIONES = [
   [1, 0],
   [0, 1],
