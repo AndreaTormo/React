@@ -1,12 +1,9 @@
 import { FILAS } from '../utils/calcularGanador'
 import Ficha from './Ficha'
 
-//   ganadoras   -> filas de esta columna que forman la línea ganadora (paso 4)
-function Columna({ fichas, onElegir, desactivada }) {
+function Columna({ fichas, onElegir, desactivada, ganadoras = [] }) {
   const filas = []
-  for (let fila = FILAS - 1; fila >= 0; fila--) {
-    filas.push(<Ficha key={fila} valor={fichas[fila] ?? null} />)
-  }
+  for (let fila = FILAS - 1; fila >= 0; fila--) {filas.push(<Ficha key={fila} valor={fichas[fila] ?? null} ganadora={ganadoras.includes(fila)} /> )}
 
   return (
     <button className="columna" onClick={onElegir} disabled={desactivada}>
