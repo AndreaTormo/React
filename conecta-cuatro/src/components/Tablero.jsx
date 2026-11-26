@@ -1,7 +1,8 @@
 import { FILAS } from '../utils/calcularGanador'
 import Columna from './Columna'
+import Ficha from './Ficha'
 
-function Tablero({ tablero, onJugar }) {
+function Tablero({ turno, tablero, onJugar }) {
   // TODO (paso 4): resultado, empate y partida terminada
 
   function elegirColumna(col) {
@@ -10,17 +11,17 @@ function Tablero({ tablero, onJugar }) {
     }
 
     const nuevoTablero = tablero.slice()
-    nuevoTablero[col] = [...tablero[col], 'R']
+    nuevoTablero[col] = [...tablero[col], turno]
     onJugar(nuevoTablero)
   }
 
-  // TODO (paso 3): texto de estado con una ficha mini del color del turno
-  //   "Turno de: (ficha) Rojo"
   // TODO (paso 4): "Ganador: (ficha) Amarillo" o "Empate"
 
   return (
     <>
-      <div className="estado">{/* TODO (paso 3) */}</div>
+      <div className="estado">
+        Turno de: <Ficha valor={turno} mini /> {turno === 'R' ? 'Rojo' : 'Amarillo'}
+      </div>
       <div className="tablero">
         {tablero.map((fichas, col) => (
           <Columna

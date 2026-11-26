@@ -6,12 +6,15 @@ const TABLERO_VACIO = Array.from({ length: COLUMNAS }, () => [])
 
 function Partida() {
   const [historial, setHistorial] = useState([TABLERO_VACIO])
-  // TODO (paso 3): estado movimientoActual -> 0
+  const [movimientoActual, setMovimientoActual] = useState(0)
 
-  // TODO (paso 3): valores derivados turno ('R' en movimientos pares) y tableroActual
+  const turno = movimientoActual % 2 === 0 ? 'R' : 'A'
+  const tableroActual = historial[movimientoActual]
 
   function jugar(nuevoTablero) {
-    setHistorial([...historial, nuevoTablero])
+    const nuevoHistorial = [...historial, nuevoTablero]
+    setHistorial(nuevoHistorial)
+    setMovimientoActual(nuevoHistorial.length - 1)
   }
 
   // TODO (paso 5): lista de movimientos "Ir al movimiento #N (columna C)"
@@ -19,8 +22,7 @@ function Partida() {
   return (
     <div className="partida">
       <div>
-        <Tablero tablero={historial[historial.length - 1]} onJugar={jugar} />
-        {/* TODO (paso 3): pasa la prop turno */}
+        <Tablero turno={turno} tablero={tableroActual} onJugar={jugar} />
       </div>
       <div className="historial">{/* TODO (paso 5): <ol> con los movimientos */}</div>
     </div>
